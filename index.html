@@ -1,0 +1,75 @@
+<html>
+	<head>
+		<title>AngularJS-FlowChart</title>
+
+    <link rel="stylesheet" type="text/css" href="app.css">
+
+    <script src="lib/jquery-2.0.2.js" type="text/javascript"></script>
+    <script src="lib/angular.js" type="text/javascript"></script>
+
+    <!-- Flowchart code. -->
+    <script src="debug.js" type="text/javascript"></script>
+    <script src="flowchart/svg_class.js" type="text/javascript"></script>
+    <script src="flowchart/mouse_capture_service.js" type="text/javascript"></script>
+    <script src="flowchart/dragging_service.js" type="text/javascript"></script>
+    <script src="flowchart/flowchart_viewmodel.js" type="text/javascript"></script>
+    <script src="flowchart/flowchart_directive.js" type="text/javascript"></script>
+    <script src="ngContextMenu.js"></script>
+
+    <!-- App code. -->
+    <script src="app.js" type="text/javascript"></script>
+	</head>
+
+	<body
+		ng-app="app"
+		ng-controller="AppCtrl"
+		mouse-capture
+		ng-keydown="keyDown($event)"
+		ng-keyup="keyUp($event)"
+		>
+
+		<div style="overflow: hidden;">
+		 <!--    <div style="width: 600px; float: left;">
+				<textarea
+					style="width: 100%; height: 100%;"
+					chart-json-edit
+					view-model="chartViewModel"
+					>
+				</textarea>
+			</div> -->
+		    <!-- <div style="margin-left: 600px;"> -->
+        <div class="buttons-container">
+    			<button
+    				ng-click="addNewNode()"
+    				title="Add a new node to the chart"
+            class="button"
+            >
+            Add Node
+        </button>
+
+          <button
+            ng-click="deleteSelected()"
+            ng-disabled="chartViewModel.getSelectedNodes().length == 0 && chartViewModel.getSelectedConnections().length == 0"
+            title="Delete selected nodes and connections"
+            class="button"
+    				>
+    				Delete Selected
+				</button>
+      </div>
+        <div>
+
+
+        <div contextmenu menu-list="functionList" click-menu="clickMenu(item)" save-content="classic-html">
+			    <flow-chart
+		    		style=""
+			      	chart="chartViewModel"
+              class="flowchart"
+			      	>
+			    </flow-chart>
+          </div>
+		    </div>
+		</div>
+
+
+	</body>
+</html>
